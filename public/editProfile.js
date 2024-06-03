@@ -5,7 +5,7 @@ submit.addEventListener("click", () => {
   const username = document.getElementById("username").value;
 
   const userData = {
-    id: 1,
+    id: sessionStorage.getItem("userid"),
     name: name,
     age: age,
     username: username,

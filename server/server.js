@@ -90,7 +90,7 @@ app.post("/editprofile", (req, res) => {
   const { id, name, age, username } = req.body;
   const editProfileSql =
     "UPDATE users SET name = ?, age = ?, username = ? WHERE userid = ?";
-  con.query(editProfileSql, [name, age, username, 1], (err, result) => {
+  con.query(editProfileSql, [name, age, username, id], (err, result) => {
     if (err) {
       console.error("Error editing profile:", err);
       return res.status(500).send("Error editing profile");
@@ -147,20 +147,19 @@ app.post("/chat", async (req, res) => {
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   try {
-    /*
     const completion = await openai.chat.completions.create({
       messages: [
         {
           role: "assistant",
-          content: `as my baby assistant, answer this question: ${qn}`,
+          content: `Be my baby assistant. Answer this question: ${qn}`,
         },
       ],
       model: "gpt-3.5-turbo",
     });
     const generatedText = completion.choices[0].message.content;
-    */
-    await sleep(3000);
-    const generatedText = "GPT ANSWER DEMO"; // delete when using api
+
+    //await sleep(3000);
+    //const generatedText = "GPT ANSWER DEMO"; // delete when using api
     console.log("Generated completion:", generatedText);
     const dateTime = new Date();
     const dateTimeFormatted = dateTime
